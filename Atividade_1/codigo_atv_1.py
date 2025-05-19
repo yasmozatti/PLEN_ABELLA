@@ -33,10 +33,11 @@ while True:
         print('QUANTIDADE DE MANIFESTAÇÕES: ' , quantidade)
     elif resposta == 4:
         while True:
-            codigo = int(input('DIGITE O CÓDIGO (DÍGITO) DA MANIFESTAÇÃO: '))
-            if codigo.isdigit():
-                if codigo <= len(ouvidoria) and codigo >= len(ouvidoria):
-                    print(ouvidoria[codigo])
+            codigo_str = input('DIGITE O CÓDIGO (DÍGITO) DA MANIFESTAÇÃO: ')
+            if codigo_str.isdigit():
+                codigo = int(codigo_str)
+                if 1 <= codigo <= len(ouvidoria):
+                    print(ouvidoria[codigo - 1])
                     break
                 else: 
                     print('CÓDIGO INVÁLIDO, TENTE NOVAMENTE')
