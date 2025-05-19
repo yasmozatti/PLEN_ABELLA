@@ -14,7 +14,9 @@ manifestacoes = []
 # break# else:print("VOCÊ PODE INFORMAR APENAS UM NÚMERO INTEIRO. DIGITE NOVAMENTE.")
 
 while True:
-    print("\n-" * 100)
+    
+    print("\n")
+    print("-" * 100)
     print(" " * 47 + "OPÇÕES" + " " * 47)
     print("-" * 100)
     print(
