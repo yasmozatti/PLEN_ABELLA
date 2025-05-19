@@ -14,7 +14,7 @@ manifestacoes = []
 # break# else:print("VOCÊ PODE INFORMAR APENAS UM NÚMERO INTEIRO. DIGITE NOVAMENTE.")
 
 while True:
-    print("-" * 100)
+    print("\n-" * 100)
     print(" " * 47 + "OPÇÕES" + " " * 47)
     print("-" * 100)
     print(
@@ -26,7 +26,8 @@ while True:
         f'\n{yellow}[6]{clean}Sair e finalizar menu')
     resposta = int(input("DIGITE SUA ESCOLHA: "))
     print("-" * 100)
-
+    print("\n")
+    
     if resposta < 0 or resposta > 6:
         print(f'{red}Valor inválido, insira apenas os valores listados no menu{clean}')
 
