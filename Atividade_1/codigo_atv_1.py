@@ -1,53 +1,68 @@
 # APLICACAO OUVIDORIA
-print("BEM VINDO À OUVIDORIA!")
-print("PARA INICIAR SEU COMENTÁRIO, INFORME:")
-nome = input("NOME: ")
-while True:
-    idade = input("IDADE: ")
-    if idade.isdigit():
-        idade = int(idade)
-        break
-    else:
-        print("VOCÊ PODE INFORMAR APENAS UM NÚMERO INTEIRO. DIGITE NOVAMENTE.")
-print("OPÇÕES: ")
-print("1- AVALIAÇÃO")
-print('2- SUGESTÃO')
-print('3- RECLAMAÇÃO')
-print('4- OUTROS')
-resposta = input("DIGITE SUA ESCOLHA: ")
+# A ouvidoria seguirá um modelo onde o seu índice será o id
+ouvidoria = []
 
-#DECLARANDO AS LISTAS DA OUVIDORIA
-avaliacao = []
-sugestao = []
-reclamacao = []
-outros = []
-
-#ARMAZENANDO AS RESPOSTAS 
 while True:
+    # INICAREMOS COM A VISUALIZACAO DO MENU
+    print('BEM VINDO À OUVIDORIA')
+    print('PARA INICIARMOS O ATENDIMENTO, ESCOLHA UMA OPÇÃO: ')
+    print('1- LISTAR MANIFESTAÇÕES')
+    print('2- CRIAR UMA NOVA MANIFESTAÇÃO')
+    print('3- EXIBIR QUANTIDADE DE MANIFESTAÇÕES')
+    print('4- PESQUISAR MANIFESTAÇÃO POR CÓDIGO')
+    print('5- EXCLUIR MANIFESTAÇÃO POR CÓDIGO')
+    print('6- SAIR DO SISTEMA')
+    pergunta = input('ESCOLHA: ')
+    resposta = int(pergunta)
+
     if resposta == 1:
-        estrelas = input("EM UMA ESCALA DE 1 A 5, COMO VOCÊ AVALIA O ATENDIMENTO? ")
-        if estrelas.isdigit():
-            avaliacao_opcional = input("GOSTARIA DE DEIXAR UMA AVALIAÇÃO ESCRITA? (1- S | 2- N) ").upper()
-            if avaliacao_opcional == "N":
-                avaliacao_escrita = input('DIGITE SUA AVALIAÇÃO: ')
-                break
-            else:
-                avaliacao_escrita = '';
-                break
+        if len(ouvidoria) == 0:
+            print("NÃO HÁ MANIFESTAÇÕES FEITAS")
         else:
-            print('RESPOSTA INVÁLIDA, TENTE NOVAMENTE')
+            print("MANIFESTAÇÕES FEITAS:")
+            for i in range(len(ouvidoria)):
+                print((i+1) , ' - ' , ouvidoria[i])
     elif resposta == 2:
-        #DECIDI QUE QUANDO estrela FOR IGUAL A 0 É PORQUE NÃO HOUVE AVALIAÇÃO NUMÉRICA, ENTÃO DESCONSIDERAMOS NA MÉDIA FINAL DE ATENDIMENTO
-        estrela = 0
-        avaliacao_escrita = input('DIGITE SUA SUGESTÃO: ')
+        texto_ouvidoria = input("ESCREVA SUA MANIFESTAÇÃO: ").upper()
+        ouvidoria.append(texto_ouvidoria)
+        print("MANIFESTAÇÃO ADICIONADA COM SUCESSO")
     elif resposta == 3:
-        estrela = 1 #QUANDO O CLIENTE RECLAMA, O ATENDIMENTO É ENTENDIDO PELO SISTEMA COMO TOTALMENTE NEGATIVO
-        avaliacao_escrita = input('DIGITE AQUI SUA RECLAMAÇÃO: ')
+        quantidade = 0
+        for i in ouvidoria:
+            quantidade +=1
+        print('QUANTIDADE DE MANIFESTAÇÕES: ' , quantidade)
     elif resposta == 4:
-        estrela = 0 #TAMBÉM ENTENDEMOS QUE NÃO HOUVE AVALIAÇÃO DO ATENDIMENTO E SIM OUTRAS TRATATIVAS DO SERVIÇO
-        avaliacao_escrita = input('DIGITE SUA DÚVIDA: ')
-        print('AVALIAREMOS SUA SOLICITAÇÃO E ENTRAREMOS EM CONTATO')
+        while True:
+            codigo = int(input('DIGITE O CÓDIGO (DÍGITO) DA MANIFESTAÇÃO: '))
+            if codigo.isdigit():
+                if codigo <= len(ouvidoria) and codigo >= len(ouvidoria):
+                    print(ouvidoria[codigo])
+                    break
+                else: 
+                    print('CÓDIGO INVÁLIDO, TENTE NOVAMENTE')
+            else:
+                print("ENTRADA INVÁLIDA, TENTE NOVAMENTE!")
+    elif resposta == 5:
+        eliminar = int(input("INSIRA O ÍNDICE DA MANIFESTAÇÃO QUE DESEJA ELIMINAR: "))
+        if eliminar > len(ouvidoria) or eliminar <= 0:
+            print('INDICE INVÁLIDO, TENTE NOVAMENTE!')
+        else:
+            print('A MANIFESTAÇÃO DO ÍNDICE É: ' , ouvidoria[eliminar-1])
+            confirma = (input("DESEJA CONTINUAR? [SIM/NÃO]: ")).lower()
+            if confirma == "sim":
+                ouvidoria.pop(eliminar-1)
+            else:
+                print("OPERAÇÃO CANCELADA COM SUCESSO!!!")
+
+    elif resposta == 6:
+        print('PROGRAMA FINALIZADO')
+        print('AGRADECEMOS A PREFERÊNCIA')
+        break
+    else: 
+        print("RESPOSTA INVALIDA, TENTE NOVAMENTE!")
 
 
 
-    
+
+
+
