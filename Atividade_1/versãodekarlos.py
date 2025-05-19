@@ -10,13 +10,7 @@ magenta = '\033[1;35m'
 nome = input("NOME: ")
 manifestacoes = []
 
-#while True:
-# idade = input("IDADE: ")
-# if idade.isdigit():idade = int(idade
-# break# else:print("VOCÊ PODE INFORMAR APENAS UM NÚMERO INTEIRO. DIGITE NOVAMENTE.")
-
 while True:
-    
     print("\n")
     print("-" * 100)
     print(" " * 47 + "OPÇÕES" + " " * 47)
