@@ -10,3 +10,5 @@ Integranter do grupo: Karlos, Carlos Eduardo e Yasmim
 
 Para executar, basta apenas ter o python instalado e executar o arquivo no terminal:
 python codigo_atv_1.py
+
+Nas branchs do projeto, os meninos colocaram suas versões individualmente.

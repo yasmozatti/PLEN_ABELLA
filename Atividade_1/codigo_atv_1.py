@@ -2,16 +2,25 @@
 # A ouvidoria seguirá um modelo onde o seu índice será o id
 ouvidoria = []
 
+red = '\033[1;31m'
+yellow = '\033[1;33m'
+cyan = '\033[1;36m'
+clean = '\033[0;0m'
+
 while True:
     # INICAREMOS COM A VISUALIZACAO DO MENU
-    print('BEM VINDO À OUVIDORIA')
-    print('PARA INICIARMOS O ATENDIMENTO, ESCOLHA UMA OPÇÃO: ')
-    print('1- LISTAR MANIFESTAÇÕES')
-    print('2- CRIAR UMA NOVA MANIFESTAÇÃO')
-    print('3- EXIBIR QUANTIDADE DE MANIFESTAÇÕES')
-    print('4- PESQUISAR MANIFESTAÇÃO POR CÓDIGO')
-    print('5- EXCLUIR MANIFESTAÇÃO POR CÓDIGO')
-    print('6- SAIR DO SISTEMA')
+    print("\n")
+    print("-" * 100)
+    print(" " * 47 + "OPÇÕES" + " " * 47)
+    print("-" * 100)
+    print(
+        f'{red}[1]{clean} Listar manifestações'
+        f'\n{cyan}[2]{clean} Adicionar manifestão'
+        f'\n{red}[3]{clean} Procurar manifestação pelo indice'
+        f'\n{cyan}[4]{clean}Remover manifestação pelo indice'
+        f'\n{yellow}[5]{clean}Exibir quantidade de manifestações'
+        f'\n{yellow}[6]{clean}Sair e finalizar menu').upper()
+
     pergunta = input('ESCOLHA: ')
     resposta = int(pergunta)
 
@@ -52,6 +61,7 @@ while True:
             confirma = (input("DESEJA CONTINUAR? [SIM/NÃO]: ")).lower()
             if confirma == "sim":
                 ouvidoria.pop(eliminar-1)
+                print("MANIFESTAÇÃO ELIMINADA COM SUCESSO!")
             else:
                 print("OPERAÇÃO CANCELADA COM SUCESSO!!!")
 
