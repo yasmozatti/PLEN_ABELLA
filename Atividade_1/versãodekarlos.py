@@ -7,56 +7,67 @@ cyan = '\033[1;36m'
 green = '\033[1;32m'
 clean = '\033[0;0m'
 magenta = '\033[1;35m'
-nome = input("NOME: ")
+nome = input("NOME: ").upper()
 manifestacoes = []
 
 while True:
-    print("\n")
     print("-" * 100)
     print(" " * 47 + "OPÇÕES" + " " * 47)
     print("-" * 100)
     print(
-        f'{red}[1]{clean} Listar manifestações'
-        f'\n{cyan}[2]{clean} Adicionar manifestão'
-        f'\n{red}[3]{clean} Procurar manifestação pelo indice'
-        f'\n{magenta}[4]{clean}Remover manifestação pelo indice'
-        f'\n{yellow}[5]{clean}Exibir quantidade de manifestações'
-        f'\n{green}[6]{clean}Sair e finalizar menu')
-    resposta = int(input(f"{nome.upper()} DIGITE SUA ESCOLHA: "))
+        f'{red}[1]{clean} LISTAR MANIFESTAÇÕES'
+        f'\n{cyan}[2]{clean} ADICIONAR MANIFESTAÇÃO'
+        f'\n{red}[3]{clean} PROCURAR MANIFESTAÇÃO PELO ÍNDICE'
+        f'\n{magenta}[4]{clean} REMOVER MANIFESTAÇÃO PELO ÍNDICE'
+        f'\n{yellow}[5]{clean} EXIBIR QUANTIDADE DE MANIFESTAÇÕES'
+        f'\n{green}[6]{clean} FINALIZAR E SAIR DO MENU')
+    resposta = int(input(f"{nome} DIGITE SUA ESCOLHA: "))
     print("-" * 100)
-    print("\n")
-    
+
     if resposta < 0 or resposta > 6:
-        print(f'{red}Valor inválido, insira apenas os valores listados no menu{clean}')
+        print(f'{red}VALOR INVÁLIDO, INSIRA APENAS OS VALORES LISTADOS NO MENU{clean}')
 
     elif resposta == 1:
         if len(manifestacoes) == 0:
-            print(f"{red}A lista está vazia{clean}")
+            print(f"{red}A LISTA ESTÁ VAZIA{clean}")
         else:
             for item in range(len(manifestacoes)):
                 print(f'{item + 1} - {manifestacoes[item]}')
 
     elif resposta == 2:
-        manifestacao = input(f"{nome} Insira sua manifestação: ")
+        manifestacao = input(f"{nome} INSIRA SUA MANIFESTAÇÃO: ")
         manifestacoes.append(manifestacao)
-        print(f'{green}Sua manifestação: ({manifestacao}) foi adicionada com sucesso!!!{clean}')
+        print(f'{green}SUA MANIFESTAÇÃO: {clean}({manifestacao}){green}  FOI ADICIONADA COM SUCESSO!!!{clean}')
 
     elif resposta == 3:
-        indice = int(input(f"{nome} Insira o indice da manifestação: "))
-        print(f'A manifestação de {indice} é {manifestacoes[indice-1]}')
+        if len(manifestacoes) == 0:
+            print(f'{red}A LISTA ESTÁ VAZIA{clean}!!!!!')
+        else:
+            indice = int(input(f"{nome} INSIRA O INDICE DA MANIFESTAÇÃO: "))
+            if indice-1 > len(manifestacoes) or indice < 0:
+                print(f'A LISTA NÃO POSSUI ESSA MANIFESTAÇÃO')
+            else:
+                print(f'A MANIFESTAÇÃO DE ÍNDICE{indice} É {magenta}{manifestacoes[indice - 1]}{magenta}')
 
     elif resposta == 4:
+        if len(manifestacoes) == 0:
+            print(f'{red}A LISTA ESTÁ VAZIA{clean}!!!')
+
+        else:
             eliminar = int(input('Insira o indice da manifestação que deseja eliminar: '))
-            print(f'A manifestação de indice {eliminar} é {manifestacoes[eliminar-1]}')
-            confirma = input('Deseja continuar? [S/N]').lower()
-            if confirma in 's':
-                manifestacoes.pop(eliminar-1)
+            if eliminar > len(manifestacoes) or eliminar < 0:
+                print('ESSE ÍNDICE NÃO EXISTE NA LISTA')
             else:
-                print(f"{green}Operação cancelada com sucesso!!!{clean}")
+                print(f'A MANIFESTAÇÃO DE ÍNDICE {eliminar} É{manifestacoes[eliminar - 1]}')
+                confirma = input('DESEJA CONTINUAR? [S/N]').lower()
+                if confirma in 's':
+                    manifestacoes.pop(eliminar - 1)
+                else:
+                    print(f"{green}OPERAÇÃO CANCELADA COM SUCESSO!!!{clean}")
 
     elif resposta == 5:
-        print(f'A quantidade de manifestações é {magenta}{len(manifestacoes)}{clean}')
+        print(f'A QUANTIDADE DE MANIFESTAÇÕES É {magenta}{len(manifestacoes)}{clean}')
 
     elif resposta == 6:
-        print('Programa finalizado')
+        print('PROGRAMA FINALIZADO')
         break
