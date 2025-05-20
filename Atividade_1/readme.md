@@ -12,3 +12,7 @@ Para executar, basta apenas ter o python instalado e executar o arquivo no termi
 python codigo_atv_1.py
 
 Nas branchs do projeto, os meninos colocaram suas versões individualmente.
+Por fim, o código inicial da main foi feito por mim (Yasmim), e como não foi dado git clone, a parte dos meninos foi colocada manualmente
+(ou seja, foi feito meio que um "merge" manual, apesar de todos terem a permissão de alterar as branchs)
+
+Dito isso, a versão inicial e final é a main, mas é interessante também olhar as branchs de Karlos e Eduardo para também compreender o raciocínio dos dois durante o processo
