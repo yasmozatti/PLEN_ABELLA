@@ -68,11 +68,11 @@ while True:
         else:
             print(f"{red}ENTRADA INVÁLIDA, TENTE NOVAMENTE!{clean}")
     elif resposta == 5:
-        eliminar = int(input("INSIRA O ÍNDICE DA MANIFESTAÇÃO QUE DESEJA ELIMINAR: "))
+        eliminar = int(input("INSIRA O CÓDIGO DA MANIFESTAÇÃO QUE DESEJA ELIMINAR: "))
         if eliminar > len(ouvidoria) or eliminar <= 0:
-            print(f'{red}INDICE INVÁLIDO, TENTE NOVAMENTE!{clean}')
+            print(f'{red}CÓDIGO INVÁLIDO, TENTE NOVAMENTE!{clean}')
         else:
-            print(f'A MANIFESTAÇÃO DE ÍNDICE{eliminar} É {magenta}{ouvidoria[eliminar - 1]}{magenta}')
+            print(f'A MANIFESTAÇÃO DE CÓDIGO {eliminar} É {magenta}{ouvidoria[eliminar - 1]}{magenta}')
             confirma = (input("DESEJA CONTINUAR? [SIM/NÃO]: ")).lower()
             if confirma == "sim":
                 ouvidoria.pop(eliminar-1)
