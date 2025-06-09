@@ -1,4 +1,4 @@
-import operacoesbd
+import operacoesbd as db
 
 #Apresentação do menu
 def menu():
@@ -48,7 +48,7 @@ conn = db.criarConexao("localhost", "root", "sua_senha", "nome_do_banco")
 
 #Função para registrar uma ouvidoria
 def registrar_mensagem():
-    nome = input("Seu nome: ")
+    nome = input("Digite seu nome: ")
     categoria = input("Categoria (reclamação/sugestão/elogio): ").lower()
     mensagem = input("Digite sua mensagem: ")
 
@@ -58,6 +58,21 @@ def registrar_mensagem():
     id = db.insertNoBancoDados(conn, sql, dados)
     if id:
         print("Mensagem registrada com sucesso.")
+
+# Função para listar as mensagens da ouvidoria
+def listar_mensagens():
+    sql = "SELECT id, nome, categoria, mensagem FROM ouvidoria"
+    resultados = db.listarBancoDados(conn, sql)
+    for ouvidoria in resultados:
+        print(f"ID: {ouvidoria[0]}, \nNOME: {ouvidoria[1]} \nCATEGORIA: {ouvidoria[2]}, \nMENSAGEM: {ouvidoria[3]}")
+
+#Função para listar as mensagens por categoria
+def listar_mensagem_categoria():
+    print("Implementar")
+
+#Função para excluir alguma ouvidoria
+def excluir_mensagem():
+    print("Implementar")
 
 #Executando o programa
 menu()
