@@ -29,4 +29,4 @@ O projeto utiliza a biblioteca desenvolvida pelo professor Daniel Abella para op
 
 1. Clone este repositório:
    ```bash
-   git clone <URL_DO_SEU_REPOSITÓRIO>
+   git clone https://github.com/yasmozatti/PLEN_ABELLA.git
