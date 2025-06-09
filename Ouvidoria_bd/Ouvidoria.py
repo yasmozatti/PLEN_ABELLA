@@ -6,8 +6,9 @@ def menu():
         print("\n=== Ouvidoria ===")
         print("1. Registrar mensagem")
         print("2. Listar mensagens")
-        print("3. Excluir mensagem")
-        print("4. Sair")
+        print("3. Listar mensagens")
+        print("4. Excluir mensagem")
+        print("5. Sair")
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
@@ -15,8 +16,10 @@ def menu():
         elif opcao == "2":
             listar_mensagens()
         elif opcao == "3":
-            excluir_mensagem()
+            listar_mensagens_categoria()
         elif opcao == "4":
+            excluir_mensagem()
+        elif opcao == "5":
             break
         else:
             print("Opção inválida.")
@@ -67,7 +70,7 @@ def listar_mensagens():
         print(f"ID: {ouvidoria[0]}, \nNOME: {ouvidoria[1]} \nCATEGORIA: {ouvidoria[2]}, \nMENSAGEM: {ouvidoria[3]}")
 
 #Função para listar as mensagens por categoria
-def listar_mensagem_categoria():
+def listar_mensagens_categoria():
     print("Implementar")
 
 #Função para excluir alguma ouvidoria
