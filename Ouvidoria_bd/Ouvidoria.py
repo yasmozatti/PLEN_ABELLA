@@ -1,4 +1,5 @@
 import operacoesbd as db
+import mysql.connector
 
 red = '\033[1;31m'
 yellow = '\033[1;33m'
@@ -51,6 +52,7 @@ def menu():
         print("-" * 100)
 
         if opcao not in "1234567":
+
             print(f'{red}ENTRADA INVÁLIDA. É PERMITIDO APENAS SELECIONAR ALGUMA OPÇÃO DO MENU!')
 
         elif opcao == "1":
@@ -74,18 +76,20 @@ def menu():
         elif opcao == "7":
             print("Saindo do menu...")
             break
-            
+
+#Função para registrar uma ouvidoria
 def adicionar_manifestacao():
     
     nome = input("Digite seu nome: ")
     
     while True:
 
-            categoria = input(f"Categorias" 
+        categoria = input(f"Categorias" 
                     "\n{green}[1]{clean}reclamação" 
                      "   \n{red}[2]{clean}sugestão "
                       "  \n{cyan}elogio:{clean} ")
     
+
         if categoria == "1":
             categoria = "reclamação"
             break
@@ -106,13 +110,15 @@ def adicionar_manifestacao():
     sql = "INSERT INTO ouvidoria (nome, categoria, manifestação) VALUES (%s, %s, %s)"
     dados = (nome, categoria, manifestacao)
 
-    codigo = db.insertNoBancoDados(conn, sql, dados)
+    id = db.insertNoBancoDados(conn, sql, dados)
     if id:
         print("Manifestação registrada com sucesso.")
 
+
+# Função para listar as mensagens da ouvidoria
 def listar_todas_manifestacoes():
     
-    sql = "SELECT codigo, nome, categoria, manifestação FROM ouvidoria"
+    sql = "SELECT id, nome, categoria, manifestação FROM ouvidoria"
     resultados = db.listarBancoDados(conn, sql)
     for ouvidoria in resultados:
         print(f"CODIGO: {ouvidoria[0]}, \nNOME: {ouvidoria[1]} \nCATEGORIA: {ouvidoria[2]}, \nMANIFESTAÇÃO: {ouvidoria[3]}")
@@ -122,9 +128,9 @@ def listar_manifestacoes_tipo():
     while True:
 
         categoria_manifestacao = input(f"Informe a categoria que deseja listar:"
-                        "\n{green}[1]{clean}reclamação"
-                        "\n{red}[2]{clean}sugestão"
-                        "\n{cyan}elogio:{clean} ")
+                        f"\n{green}[1]{clean}reclamação"
+                        f"\n{red}[2]{clean}sugestão"
+                        f"\n{cyan}elogio:{clean} ")
     
     
         if categoria_manifestacao == "1":
@@ -149,38 +155,32 @@ def listar_manifestacoes_tipo():
 
 #Função para excluir alguma ouvidoria
 def remover_manifestacao():
-    
-    while True:
-    
+    while True:    
         try:
-            codigo_de_remoção = int(input("Digite o código da manifestação a ser removida: "))
+            codigo_de_remocao = int(input("Digite o código da manifestação a ser removida: "))
             break
-            
         except ValueError:
             print(f"{red}Por favor, insira um número inteiro para o código.{clean}")
 
-
     sql = "DELETE FROM ouvidoria WHERE codigo = %s"
-    dados = (codigo_de_remoção)
-    manifestacao_excluida = db.excluirBancoDados(connection, sql, dados)
-    
-    if manifestacao_excluida > 0:
-        print(f"{green}Manifestação com código {codigo_de_remoção} removida com sucesso!{clean}")
+    dados = (codigo_de_remocao,) 
+    manifestacao_excluida = db.excluirBancoDados(conn, sql, dados)
 
+    if manifestacao_excluida > 0:
+        print(f"{green}Manifestação com código {codigo_de_remocao} removida com sucesso!{clean}")
     else:
-        print(f"{red}Nenhuma manifestação encontrada com o código {codigo_de_remoção}.{clean}")
+        print(f"{red}Nenhuma manifestação encontrada com o código {codigo_de_remocao}.{clean}")
+
 
 #Função para procurar uma manifestacao por códigona 
 def procurar_manifestacao():
-    codigo_manifestacao = int(input("Digite o código da manifestação a ser pesquisada: "))
-    consulta = 'select * from Ouvidoria where codigo = %s'
-    dados = [ codigo_manifestacao ]
-    manifestacao = db.listarBancoDados(conexao,consulta,dados)
-    
-    if len(manifestacao) == 0:
-        print("Não existe filme para o código informado!")
+    codigo = int(input("Digite o código da manifestação a ser pesquisada: "))
+    sql = 'SELECT * FROM ouvidoria WHERE codigo = %s'
+    dados = (codigo,)
+    resultados = db.listarBancoDados(conn, sql, dados)
+    for mensagem in resultados:
+        print(f"Código: {mensagem[0]}\nNome: {mensagem[1]}\nCategoria: {mensagem[2]}\nManifestação: {mensagem[3]}")
 
-    else:
-        print('- Código: ',manifestacao[0][0],
-          'Manifestação: ',manifestacao[0][2],'Categoria:',manifestacao[0][3])
+
+#Executando o programa
 menu()
