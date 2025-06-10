@@ -55,6 +55,7 @@ while True:
 
         if len(manifestacoes) == 0:
             print(f'{red}NÃO HÁ MANIFESTAÇÕES FEITAS{clean}!!!!!')
+            
         else:
             print(f'QUANTIDADE DE MANIFESTAÇÕES: {magenta}{len(manifestacoes)}{clean}')
     
