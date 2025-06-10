@@ -9,6 +9,7 @@ magenta = '\033[1;35m'
 # Criação da conexão do banco de dados 
 conn = db.criarConexao("localhost", "root", "", "ouvidoria")
 
+
 def criarTabelaOuvidoria():
     sql = """
     CREATE TABLE IF NOT EXISTS ouvidoria (
@@ -88,11 +89,10 @@ def adicionar_manifestacao():
     
     while True:
 
-        categoria = input(f"Categorias
-                        \n{green}[1]{clean}reclamação
-                        \n{red}[2]{clean}sugestão
-                        \n{cyan}elogio:{clean} ")
-    
+        categoria = input(f"Categorias"
+                        f"\n{green}[1]{clean}reclamação"
+                        f"\n{red}[2]{clean}sugestão"
+                        f"\n{cyan}elogio:{clean}")
     
         if categoria == "1":
             categoria = "reclamação"
@@ -131,10 +131,10 @@ def listar_todas_manifestacoes():
 def listar_manifestacoes_tipo():
     while True:
 
-        categoria_manifestacao = input(f"Informe a categoria que deseja listar:
-                        \n{green}[1]{clean}reclamação
-                        \n{red}[2]{clean}sugestão
-                        \n{cyan}elogio:{clean} ")
+        categoria_manifestacao = input(f"Informe a categoria que deseja listar:"
+                        f"\n{green}[1]{clean}reclamação"
+                        f"\n{red}[2]{clean}sugestão"
+                        f"\n{cyan}elogio:{clean} ")
     
     
         if categoria_manifestacao == "1":
@@ -172,7 +172,6 @@ def remover_manifestacao():
 
     sql = "DELETE FROM ouvidoria WHERE codigo = %s"
     dados = (codigo_de_remoção)
-    resultado = db.
     manifestacao_excluida = excluirBancoDados(connection, sql, dados)
     
     if manifestacao_excluida > 0:
@@ -186,7 +185,12 @@ def procurar_manifestacao():
     codigo_manifestacao = int(input("Digite o código da manifestação a ser pesquisada: "))
     consulta = 'select * from Ouvidoria where codigo = %s'
     dados = [ codigo_manifestacao ]
-    filmes = listarBancoDados(conexao,consulta,dados)
+    manifestacao = listarBancoDados(conexao,consulta,dados)
+    
+    if len(manifestacao) == 0:
+        print("Não existe filme para o código informado!")
 
-#Executando o programa
-menu()
+    else:
+        print('- Código: ',manifestacao[0][0],
+          'Manifestação: ',manifestacao[0][2],'Categoria:',manifestacao[0][3])
+
