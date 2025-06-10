@@ -183,14 +183,6 @@ def procurar_manifestacao():
     for mensagem in resultados:
         print(f"Código: {mensagem[0]}\nNome: {mensagem[1]}\nCategoria: {mensagem[2]}\nManifestação: {mensagem[3]}")
 
-
-#Executando o programa
-menu()
-            
-        elif opcao == "7":
-            print("Saindo do menu...")
-            break
-
 #Função para registrar uma ouvidoria
 def adicionar_manifestacao():
     
