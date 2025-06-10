@@ -9,7 +9,6 @@ magenta = '\033[1;35m'
 # Criação da conexão do banco de dados 
 conn = db.criarConexao("localhost", "root", "", "ouvidoria")
 
-
 def criarTabelaOuvidoria():
     sql = """
     CREATE TABLE IF NOT EXISTS ouvidoria (
@@ -75,13 +74,7 @@ def menu():
         elif opcao == "7":
             print("Saindo do menu...")
             break
-
-
-
-# Criacao da tabela no SQL
-
-
-#Função para registrar uma ouvidoria
+            
 def adicionar_manifestacao():
     
     nome = input("Digite seu nome: ")
@@ -117,8 +110,6 @@ def adicionar_manifestacao():
     if id:
         print("Manifestação registrada com sucesso.")
 
-
-# Função para listar as mensagens da ouvidoria
 def listar_todas_manifestacoes():
     
     sql = "SELECT codigo, nome, categoria, manifestação FROM ouvidoria"
@@ -171,7 +162,7 @@ def remover_manifestacao():
 
     sql = "DELETE FROM ouvidoria WHERE codigo = %s"
     dados = (codigo_de_remoção)
-    manifestacao_excluida = excluirBancoDados(connection, sql, dados)
+    manifestacao_excluida = db.excluirBancoDados(connection, sql, dados)
     
     if manifestacao_excluida > 0:
         print(f"{green}Manifestação com código {codigo_de_remoção} removida com sucesso!{clean}")
@@ -184,7 +175,7 @@ def procurar_manifestacao():
     codigo_manifestacao = int(input("Digite o código da manifestação a ser pesquisada: "))
     consulta = 'select * from Ouvidoria where codigo = %s'
     dados = [ codigo_manifestacao ]
-    manifestacao = listarBancoDados(conexao,consulta,dados)
+    manifestacao = db.listarBancoDados(conexao,consulta,dados)
     
     if len(manifestacao) == 0:
         print("Não existe filme para o código informado!")
@@ -192,4 +183,4 @@ def procurar_manifestacao():
     else:
         print('- Código: ',manifestacao[0][0],
           'Manifestação: ',manifestacao[0][2],'Categoria:',manifestacao[0][3])
-
+menu()
