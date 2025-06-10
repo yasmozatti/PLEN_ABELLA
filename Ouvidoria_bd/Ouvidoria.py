@@ -6,7 +6,7 @@ def menu():
         print("\n=== Ouvidoria ===")
         print("1. Registrar mensagem")
         print("2. Listar mensagens")
-        print("3. Listar mensagens")
+        print("3. Listar mensagens por categoria")
         print("4. Excluir mensagem")
         print("5. Sair")
         opcao = input("Escolha uma opção: ")
@@ -24,7 +24,10 @@ def menu():
         else:
             print("Opção inválida.")
 
-#Criacao da tabela no SQL
+# Criação da conexão do banco de dados 
+conn = db.criarConexao("localhost", "root", "", "ouvidoria")
+
+# Criacao da tabela no SQL
 def criarTabelaOuvidoria():
     sql = """
     CREATE TABLE IF NOT EXISTS ouvidoria (
@@ -41,13 +44,10 @@ def criarTabelaOuvidoria():
     except Exception as e:
         print(f"Erro ao criar tabela: {e}")
     finally:
-        cursor.close()
+        if 'cursor' in locals():
+            cursor.close()
 
 criarTabelaOuvidoria()
-
-#Criação da conexão do banco de dados 
-#Durante todo o código estaremos utilizando a biblioteca disponibilizada
-conn = db.criarConexao("localhost", "root", "sua_senha", "nome_do_banco")
 
 #Função para registrar uma ouvidoria
 def registrar_mensagem():
@@ -71,10 +71,18 @@ def listar_mensagens():
 
 #Função para listar as mensagens por categoria
 def listar_mensagens_categoria():
-    print("Implementar")
+    categoria_ouvidoria = input("Informa a categoria")
+    sql = f"SELECT id, nome, categoria, mensagem FROM ouvidoria WHERE categoria = '{categoria_ouvidoria}'"
+    resultados = db.listarBancoDados(conn, sql)
+    for ouvidoria in resultados:
+        print(f"ID: {ouvidoria[0]}, \nNOME: {ouvidoria[1]} \nCATEGORIA: {ouvidoria[2]}, \nMENSAGEM: {ouvidoria[3]}")
 
 #Função para excluir alguma ouvidoria
 def excluir_mensagem():
+    print("Implementar")
+
+#Função para alterar a mensagem enviada na ouvidoria
+def alterar_mensagem():
     print("Implementar")
 
 #Executando o programa
