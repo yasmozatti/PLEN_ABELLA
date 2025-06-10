@@ -88,10 +88,10 @@ def adicionar_manifestacao():
     
     while True:
 
-        categoria = input(f"Categorias"
-                        f"\n{green}[1]{clean}reclamação"
-                        f"\n{red}[2]{clean}sugestão"
-                        f"\n{cyan}elogio:{clean}")
+            categoria = input(f"Categorias" 
+                    "\n{green}[1]{clean}reclamação" 
+                     "   \n{red}[2]{clean}sugestão "
+                      "  \n{cyan}elogio:{clean} ")
     
         if categoria == "1":
             categoria = "reclamação"
@@ -131,9 +131,9 @@ def listar_manifestacoes_tipo():
     while True:
 
         categoria_manifestacao = input(f"Informe a categoria que deseja listar:"
-                        f"\n{green}[1]{clean}reclamação"
-                        f"\n{red}[2]{clean}sugestão"
-                        f"\n{cyan}elogio:{clean} ")
+                        "\n{green}[1]{clean}reclamação"
+                        "\n{red}[2]{clean}sugestão"
+                        "\n{cyan}elogio:{clean} ")
     
     
         if categoria_manifestacao == "1":
