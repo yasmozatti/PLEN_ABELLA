@@ -194,7 +194,7 @@ def adicionar_manifestacao():
         categoria = input(f"Categorias" 
                     "\n{green}[1]{clean}reclamação" 
                      "   \n{red}[2]{clean}sugestão "
-                      "  \n{cyan}elogio:{clean} ")
+                      "  \n{cyan}[3]{clean}elogio: ")
     
 
         if categoria == "1":
@@ -225,7 +225,7 @@ def adicionar_manifestacao():
 # Função para listar as mensagens da ouvidoria
 def listar_todas_manifestacoes():
     
-    sql = "SELECT id, nome, categoria, manifestação FROM ouvidoria"
+    sql = "SELECT codigo, nome, categoria, manifestação FROM ouvidoria"
     resultados = db.listarBancoDados(conn, sql)
     for ouvidoria in resultados:
         print(f"CODIGO: {ouvidoria[0]}, \nNOME: {ouvidoria[1]} \nCATEGORIA: {ouvidoria[2]}, \nMANIFESTAÇÃO: {ouvidoria[3]}")
@@ -258,7 +258,7 @@ def listar_manifestacoes_tipo():
     sql = f"SELECT codigo, nome, categoria, manifestação FROM ouvidoria WHERE categoria = '{categoria_manifestacao}'"
     resultados = db.listarBancoDados(conn, sql)
     for ouvidoria in resultados:
-        print(f"ID: {ouvidoria[0]}, \nNOME: {ouvidoria[1]} \nCATEGORIA: {ouvidoria[2]}, \nMANIFESTAÇÃO: {ouvidoria[3]}")
+        print(f"CÓDIGO: {ouvidoria[0]}, \nNOME: {ouvidoria[1]} \nCATEGORIA: {ouvidoria[2]}, \nMANIFESTAÇÃO: {ouvidoria[3]}")
 
 #Função para excluir alguma ouvidoria
 def remover_manifestacao():
@@ -279,6 +279,14 @@ def remover_manifestacao():
         print(f"{red}Nenhuma manifestação encontrada com o código {codigo_de_remocao}.{clean}")
 
 
+
+
+def exibir_quantidade_manifestacoes():
+    consulta = 'select count(*) from ouvidoria'
+    quantidade_de_manifestacoes = db.listarBancoDados(conn,consulta)
+    print('Temos',quantidade_de_manifestacoes[0][0],'manifestação(s).')
+
+
 #Função para procurar uma manifestacao por códigona 
 def procurar_manifestacao():
     codigo = int(input("Digite o código da manifestação a ser pesquisada: "))
@@ -287,13 +295,6 @@ def procurar_manifestacao():
     resultados = db.listarBancoDados(conn, sql, dados)
     for mensagem in resultados:
         print(f"Código: {mensagem[0]}\nNome: {mensagem[1]}\nCategoria: {mensagem[2]}\nManifestação: {mensagem[3]}")
-
-
-def exibir_quantidade_manifestacoes():
-    consulta = 'select count(*) from ouvidoria'
-    quantidade_de_manifestacoes = db.listarBancoDados(conn,consulta)
-    print('Temos',filmes[0][0],'filme(s).')
-
 
 #Executando o programa
 menu()
