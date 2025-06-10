@@ -114,7 +114,7 @@ def adicionar_manifestacao():
     sql = "INSERT INTO ouvidoria (nome, categoria, manifestação) VALUES (%s, %s, %s)"
     dados = (nome, categoria, manifestacao)
 
-    id = db.insertNoBancoDados(conn, sql, dados)
+    codigo = db.insertNoBancoDados(conn, sql, dados)
     if id:
         print("Manifestação registrada com sucesso.")
 
@@ -122,7 +122,7 @@ def adicionar_manifestacao():
 # Função para listar as mensagens da ouvidoria
 def listar_todas_manifestacoes():
     
-    sql = "SELECT id, nome, categoria, manifestação FROM ouvidoria"
+    sql = "SELECT codigo, nome, categoria, manifestação FROM ouvidoria"
     resultados = db.listarBancoDados(conn, sql)
     for ouvidoria in resultados:
         print(f"CODIGO: {ouvidoria[0]}, \nNOME: {ouvidoria[1]} \nCATEGORIA: {ouvidoria[2]}, \nMANIFESTAÇÃO: {ouvidoria[3]}")
