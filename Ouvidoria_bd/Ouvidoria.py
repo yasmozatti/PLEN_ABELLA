@@ -52,7 +52,6 @@ def menu():
         print("-" * 100)
 
         if opcao not in "1234567":
-
             print(f'{red}ENTRADA INVÁLIDA. É PERMITIDO APENAS SELECIONAR ALGUMA OPÇÃO DO MENU!')
 
         elif opcao == "1":
