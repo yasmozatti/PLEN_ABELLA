@@ -78,6 +78,7 @@ def menu():
             
         elif opcao == "7":
             print("Saindo do menu...")
+            db.encerrarConexao(conexao)
             break
 
 #Função para registrar uma ouvidoria
@@ -286,6 +287,12 @@ def procurar_manifestacao():
     resultados = db.listarBancoDados(conn, sql, dados)
     for mensagem in resultados:
         print(f"Código: {mensagem[0]}\nNome: {mensagem[1]}\nCategoria: {mensagem[2]}\nManifestação: {mensagem[3]}")
+
+
+def exibir_quantidade_manifestacoes():
+    consulta = 'select count(*) from ouvidoria'
+    quantidade_de_manifestacoes = db.listarBancoDados(conn,consulta)
+    print('Temos',filmes[0][0],'filme(s).')
 
 
 #Executando o programa
